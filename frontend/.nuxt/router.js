@@ -8,6 +8,7 @@ const _40508f8b = () => interopDefault(import('../pages/about.vue' /* webpackChu
 const _be22a54c = () => interopDefault(import('../pages/exhibit/index.vue' /* webpackChunkName: "pages/exhibit/index" */))
 const _3445e66c = () => interopDefault(import('../pages/visitor.vue' /* webpackChunkName: "pages/visitor" */))
 const _7b9d8b45 = () => interopDefault(import('../pages/exhibit/_id/index.vue' /* webpackChunkName: "pages/exhibit/_id/index" */))
+const _339dac6b = () => interopDefault(import('../pages/exhibit/_id/_scale/index.vue' /* webpackChunkName: "pages/exhibit/_id/_scale/index" */))
 const _60086a50 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
@@ -37,6 +38,10 @@ export const routerOptions = {
     path: "/exhibit/:id",
     component: _7b9d8b45,
     name: "exhibit-id"
+  }, {
+    path: "/exhibit/:id/:scale",
+    component: _339dac6b,
+    name: "exhibit-id-scale"
   }, {
     path: "/",
     component: _60086a50,

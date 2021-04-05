@@ -28,6 +28,13 @@
     "_name": "_7b9d8b45"
   },
   {
+    "name": "exhibit-id-scale",
+    "path": "/exhibit/:id/:scale",
+    "component": "/Users/jaewon/Desktop/exhibit_a/frontend/pages/exhibit/_id/_scale/index.vue",
+    "chunkName": "pages/exhibit/_id/_scale/index",
+    "_name": "_339dac6b"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/jaewon/Desktop/exhibit_a/frontend/pages/index.vue",

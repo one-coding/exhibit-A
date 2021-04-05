@@ -2,19 +2,19 @@
   <div>
     <div class="home">
       <div id="main-poster_div">
-        <!-- <img
+        <img
           class="main-poster"
           :src="src.mainSrc"
           :style="{
             width: mainInnerWidth + 'px',
             height: mainInnerHeight + 'px',
-          }" -->
+          }"
         />
         <div class="main-poster_info-box">
-          <!-- <img class="main-poster_info" src="../assets/img/posterInfo.png" /> -->
-          <router-link to="/about" class="enter-btn_span">
+          <img class="main-poster_info" src="../assets/img/posterInfo.png" />
+          <nuxt-link to="/about" class="enter-btn_span">
             <button class="enter-btn">전시입장</button>
-          </router-link>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -22,16 +22,14 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: "Home",
   components: {},
   data() {
     return {
-      //   src: {
-      //     mainSrc: require("../assets/img/main.jpg"),
-      //   },
+      src: {
+        mainSrc: require("../assets/img/main.jpg"),
+      },
       scale: 0,
       mainInnerWidth: 0,
       mainInnerHeight: 0,
@@ -60,6 +58,9 @@ export default {
 
 <style scoped>
 #main-poster_div {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .main-poster_info-box {
   position: absolute;

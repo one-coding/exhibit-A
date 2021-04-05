@@ -4,7 +4,7 @@
       <div id="logo"><nuxt-link to="/">무위 無爲</nuxt-link></div>
       <div id="nav-menu">
         <nuxt-link to="/about">전시소개</nuxt-link> |
-        <nuxt-link @click.native="scrollToTop" to="/exhibit">전시장</nuxt-link>
+        <nuxt-link to="">전시장</nuxt-link>
         |
         <nuxt-link to="/visitor">방명록</nuxt-link>
       </div>
@@ -17,14 +17,14 @@
           <nuxt-link to="/">
             <font-awesome-icon icon="step-forward" />
           </nuxt-link>
-          <nuxt-link :to="{ name: 'showExhibit', params: { id: +id - 1 } }">
+          <nuxt-link to="/">
             <font-awesome-icon icon="chevron-left" />
           </nuxt-link>
-          <span> {{ id }} / 6</span>
-          <nuxt-link :to="{ name: 'showExhibit', params: { id: +id + 1 } }">
+          <span> 1 / 6</span>
+          <nuxt-link to="/">
             <font-awesome-icon icon="chevron-right" />
           </nuxt-link>
-          <nuxt-link to="exhibit">
+          <nuxt-link to="/exhibit">
             <font-awesome-icon icon="step-forward" />
           </nuxt-link>
         </div>
@@ -42,23 +42,10 @@ export default {
     console.log("created!");
   },
   data() {
-    return {
-      id: "",
-      btn: null,
-    };
+    return {};
   },
   computed: {},
-  methods: {
-    fetchData() {
-      this.id = this.$route.params.id;
-    },
-    scrollToTop() {
-      window.scrollTo(0, 0);
-    },
-  },
-  watch: {
-    "$route.params.id": "fetchData",
-  },
+  methods: {},
 };
 </script>
 
@@ -68,6 +55,7 @@ export default {
   width: 100%;
   height: 80px;
   bottom: 0;
+  left: 0;
   background: #191919 0% 0% no-repeat padding-box;
   z-index: 2;
   color: #fff;

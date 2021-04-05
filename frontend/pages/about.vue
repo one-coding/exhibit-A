@@ -32,7 +32,7 @@
       </nuxt-link>
     </div>
     <div class="right_btn-div">
-      <nuxt-link to="/exhibit">
+      <nuxt-link to="/exhibit/1">
         <span>작품감상</span>
         <button class="right_btn">
           <font-awesome-icon :icon="['fas', 'chevron-right']" />
@@ -160,7 +160,7 @@ export default {
     },
     onClickMiddle() {
       window.scroll({
-        top: 900,
+        top: 940,
         left: 0,
         behavior: "smooth",
       });

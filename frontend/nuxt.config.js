@@ -1,6 +1,6 @@
 module.exports = {
   head: {
-    title: "NodeBird",
+    title: "비대면 전시회",
   },
   modules: [],
   buildModules: ["@nuxtjs/style-resources", "@nuxtjs/fontawesome"],

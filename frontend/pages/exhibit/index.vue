@@ -2,7 +2,7 @@
 
 <script>
 export default {
-  layout: " playbar",
+  layout: "playbar",
 };
 </script>
 
