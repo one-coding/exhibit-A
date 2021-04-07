@@ -4,7 +4,10 @@
       <img class="art-img" :src="arts[0].plus_src" />
     </div>
     <div class="btn-wrapper_span">
-      <nuxt-link to="exhibit/id">돌아가기</nuxt-link>
+      <nuxt-link :to="`/exhibit/${pageIndex}`">돌아가기</nuxt-link>
+    </div>
+    <div class="btn-wrapper">
+      <!-- <button></button> 여기서부터시작하셈 플러스 마이너스 구현 -->
     </div>
   </div>
 </template>
@@ -12,13 +15,16 @@
 <script>
 export default {
   scrollToTop: true,
-  layout: "playbar",
+  layout: "scale",
   head: {
     title: "비대면 전시회 - 전시장",
   },
   computed: {
     arts() {
       return this.$store.state.image.arts;
+    },
+    pageIndex() {
+      return this.$route.params.id;
     },
   },
 

@@ -17,11 +17,11 @@
           <nuxt-link to="/">
             <font-awesome-icon icon="step-forward" />
           </nuxt-link>
-          <nuxt-link to="/">
+          <nuxt-link :to="`/exhibit/${+pageIndex - 1}`">
             <font-awesome-icon icon="chevron-left" />
           </nuxt-link>
-          <span> 1 / 6</span>
-          <nuxt-link to="/">
+          <span> {{ pageIndex }} / 7</span>
+          <nuxt-link :to="`/exhibit/${+pageIndex + 1}`">
             <font-awesome-icon icon="chevron-right" />
           </nuxt-link>
           <nuxt-link to="/exhibit">
@@ -35,16 +35,14 @@
 
 <script>
 export default {
-  beforeCreate() {
-    console.log("beforeCreate!");
-  },
-  created() {
-    console.log("created!");
-  },
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    pageIndex() {
+      return this.$route.params.id;
+    },
+  },
   methods: {},
 };
 </script>

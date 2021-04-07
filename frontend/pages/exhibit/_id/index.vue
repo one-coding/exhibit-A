@@ -3,7 +3,7 @@
     <div id="art-img_box">
       <img
         class="art-img"
-        :src="arts[0].main_src"
+        :src="src.mainSrc"
         :style="{
           width: mainInnerWidth + 'px',
           height: mainInnerHeight + 'px',
@@ -11,7 +11,7 @@
       />
     </div>
     <div class="btn-wrapper">
-      <nuxt-link to="id/scale">
+      <nuxt-link :to="`/exhibit/${pageIndex}/scale`">
         <font-awesome-icon class="serch-icon" icon="search" />
       </nuxt-link>
     </div>
@@ -28,11 +28,18 @@
           <p>순수 작품 보기</p>
         </button>
       </div>
-      <div class="art-img_info">
-        <h1>{{ arts[0].name }}</h1>
-        <span>유채</span>
-        <span>396 X 162cm</span>
-        <span>한국무용 - 살풀이 춤</span>
+      <div class="art-img_info" ref="upTarget">
+        <h1>{{ info.name }}</h1>
+        <span>{{ info.method }}</span>
+        <span>{{ info.size }}</span>
+        <span>{{ info.dance }}</span>
+        <div
+          style="width: 350px; text-align:center; display:inline-block;line-height:1.4;"
+        >
+          <span :style="{ fontSize: '18px' }" v-if="info.descirption">{{
+            info.descirption
+          }}</span>
+        </div>
       </div>
       <div class="to-fusionArt">
         <button @click="onClickScrollFusionArt" class="bottom-btn">
@@ -43,7 +50,7 @@
     </div>
     <img
       class="art-img"
-      :src="arts[0].plus_src"
+      :src="src.plusSrc"
       :style="{
         width: mainInnerWidth + 'px',
         height: mainInnerHeight + 'px',
@@ -59,16 +66,37 @@ export default {
     title: "비대면 전시회 - 전시장",
   },
   computed: {
-    arts() {
-      return this.$store.state.image.arts;
+    pageIndex() {
+      return this.$route.params.id;
     },
   },
 
   mounted() {
-    console.log("왜 안돼");
     this.toTop();
-    console.log("돼잖아");
     document.documentElement.style.overflow = "hidden";
+
+    const artId = this.$route.params.id;
+    switch (artId) {
+      case "1":
+        this.artIdChangeSrc(0);
+        break;
+      case "2":
+        this.artIdChangeSrc(1);
+        break;
+      case "3":
+        this.artIdChangeSrc(2);
+        break;
+      case "4":
+        this.artIdChangeSrc(3);
+        break;
+      case "5":
+        this.artIdChangeSrc(4);
+        break;
+      case "6":
+        this.artIdChangeSrc(5);
+        break;
+    }
+
     window.addEventListener("scroll", this.handleScroll);
     window.addEventListener("resize", this.handleResize);
     this.mainInnerWidth = window.innerWidth;
@@ -80,11 +108,21 @@ export default {
   },
   data() {
     return {
+      src: {
+        mainSrc: this.$store.state.image.arts[0].main_src,
+        plusSrc: this.$store.state.image.arts[0].plus_src,
+      },
+      info: {
+        name: this.$store.state.image.arts[0].name,
+        descirption: this.$store.state.image.arts[0].descirption,
+        dance: this.$store.state.image.arts[0].dance,
+        size: this.$store.state.image.arts[0].size,
+        method: this.$store.state.image.arts[0].method,
+      },
       artImg: true,
+
       mainInnerWidth: null,
       mainInnerHeight: null,
-      name: "",
-      descirption: "무용수와 꽃의 가장 문제적 만남",
     };
   },
   methods: {
@@ -94,11 +132,9 @@ export default {
       }, 0);
     },
     onClickScroll() {
-      window.scrollBy({
-        top: 980,
-        left: 0,
-        behavior: "smooth",
-      });
+      const target = this.$refs.upTarget;
+      console.log(target);
+      target.scrollIntoView({ behavior: "smooth" });
     },
     onClickScrollToArt() {
       window.scroll({
@@ -126,6 +162,15 @@ export default {
     handleResize() {
       this.mainInnerWidth = window.innerWidth;
       this.mainInnerHeight = window.innerHeight;
+    },
+    artIdChangeSrc(index) {
+      this.src.mainSrc = this.$store.state.image.arts[index].main_src;
+      this.src.plusSrc = this.$store.state.image.arts[index].plus_src;
+      this.info.name = this.$store.state.image.arts[index].name;
+      this.info.method = this.$store.state.image.arts[index].method;
+      this.info.size = this.$store.state.image.arts[index].size;
+      this.info.dance = this.$store.state.image.arts[index].dance;
+      this.info.descirption = this.$store.state.image.arts[index].descirption;
     },
   },
 };
