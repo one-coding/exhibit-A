@@ -4,7 +4,7 @@
       <div id="logo"><nuxt-link to="/">무위 無爲</nuxt-link></div>
       <div id="nav-menu">
         <nuxt-link to="/about">전시소개</nuxt-link> |
-        <nuxt-link to="">전시장</nuxt-link>
+        <nuxt-link :to="`/exhibit/${+pageIndex}`">전시장</nuxt-link>
         |
         <nuxt-link to="/visitor">방명록</nuxt-link>
       </div>
@@ -13,18 +13,37 @@
 
     <div id="playbar">
       <div id="playbar-wrapper">
-        <div class="playbar-icon">
-          <nuxt-link to="/">
+        <!-- 전시장까지 보여질 플레이바 -->
+        <div class="playbar-icon" v-show="pageIndex !== '6'">
+          <nuxt-link to="/exhibit/1">
+            <font-awesome-icon icon="step-backward" />
+          </nuxt-link>
+          <nuxt-link :to="`/exhibit/${+pageIndex - 1}`">
+            <font-awesome-icon icon="chevron-left" />
+          </nuxt-link>
+          <span v-if="+pageIndex === 0 ? false : true">
+            {{ pageIndex }} / 7</span
+          >
+          <nuxt-link :to="`/exhibit/${+pageIndex + 1}`">
+            <font-awesome-icon icon="chevron-right" />
+          </nuxt-link>
+          <nuxt-link to="/exhibit/6">
             <font-awesome-icon icon="step-forward" />
+          </nuxt-link>
+        </div>
+        <!-- 방명록으로 가는 플레이 바-->
+        <div class="playbar-icon" v-show="pageIndex === '6'">
+          <nuxt-link to="/exhibit/1">
+            <font-awesome-icon icon="step-backward" />
           </nuxt-link>
           <nuxt-link :to="`/exhibit/${+pageIndex - 1}`">
             <font-awesome-icon icon="chevron-left" />
           </nuxt-link>
           <span> {{ pageIndex }} / 7</span>
-          <nuxt-link :to="`/exhibit/${+pageIndex + 1}`">
+          <nuxt-link :to="`/visitor`">
             <font-awesome-icon icon="chevron-right" />
           </nuxt-link>
-          <nuxt-link to="/exhibit">
+          <nuxt-link to="/exhibit/6">
             <font-awesome-icon icon="step-forward" />
           </nuxt-link>
         </div>
@@ -38,6 +57,7 @@ export default {
   data() {
     return {};
   },
+  mounted() {},
   computed: {
     pageIndex() {
       return this.$route.params.id;

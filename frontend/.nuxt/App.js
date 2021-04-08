@@ -8,11 +8,14 @@ import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
 import '../node_modules/@fortawesome/fontawesome-svg-core/styles.css'
 
+import '../node_modules/vuetify/dist/vuetify.css'
+
 import _6f6c098b from '../layouts/default.vue'
 import _142630ae from '../layouts/playbar.vue'
 import _78038714 from '../layouts/scale.vue'
+import _2f2a67b8 from '../layouts/visitor.vue'
 
-const layouts = { "_default": sanitizeComponent(_6f6c098b),"_playbar": sanitizeComponent(_142630ae),"_scale": sanitizeComponent(_78038714) }
+const layouts = { "_default": sanitizeComponent(_6f6c098b),"_playbar": sanitizeComponent(_142630ae),"_scale": sanitizeComponent(_78038714),"_visitor": sanitizeComponent(_2f2a67b8) }
 
 export default {
   render (h, props) {

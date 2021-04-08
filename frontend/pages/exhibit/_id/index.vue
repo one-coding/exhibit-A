@@ -76,6 +76,11 @@ export default {
     document.documentElement.style.overflow = "hidden";
 
     const artId = this.$route.params.id;
+    if (artId <= 0) {
+      this.$router.push({
+        path: "/about",
+      });
+    }
     switch (artId) {
       case "1":
         this.artIdChangeSrc(0);
@@ -95,6 +100,8 @@ export default {
       case "6":
         this.artIdChangeSrc(5);
         break;
+    }
+    if (artId >= 7) {
     }
 
     window.addEventListener("scroll", this.handleScroll);

@@ -13,6 +13,7 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
+import nuxt_plugin_plugin_7c929eb6 from 'nuxt_plugin_plugin_7c929eb6' // Source: ./vuetify/plugin.js (mode: 'all')
 import nuxt_plugin_fontawesome_da269fe0 from 'nuxt_plugin_fontawesome_da269fe0' // Source: ./fontawesome.js (mode: 'all')
 
 // Component: <ClientOnly>
@@ -81,7 +82,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"비대면 전시회","meta":[],"link":[],"style":[],"script":[]},
+    head: {"title":"비대면 전시회","meta":[],"link":[{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},
 
     store,
     router,
@@ -209,6 +210,10 @@ async function createApp(ssrContext, config = {}) {
     }
   }
   // Plugin execution
+
+  if (typeof nuxt_plugin_plugin_7c929eb6 === 'function') {
+    await nuxt_plugin_plugin_7c929eb6(app.context, inject)
+  }
 
   if (typeof nuxt_plugin_fontawesome_da269fe0 === 'function') {
     await nuxt_plugin_fontawesome_da269fe0(app.context, inject)

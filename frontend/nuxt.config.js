@@ -3,7 +3,11 @@ module.exports = {
     title: "비대면 전시회",
   },
   modules: [],
-  buildModules: ["@nuxtjs/style-resources", "@nuxtjs/fontawesome"],
+  buildModules: [
+    "@nuxtjs/style-resources",
+    "@nuxtjs/fontawesome",
+    "@nuxtjs/vuetify",
+  ],
 
   fontawesome: {
     icons: {
