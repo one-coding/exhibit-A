@@ -19,6 +19,7 @@ let store = {};
 
   resolveStoreModules(require('../store/fontawesome.js'), 'fontawesome.js')
   resolveStoreModules(require('../store/image.js'), 'image.js')
+  resolveStoreModules(require('../store/visitor.js'), 'visitor.js')
 
   // If the environment supports hot reloading...
 
@@ -27,6 +28,7 @@ let store = {};
     module.hot.accept([
       '../store/fontawesome.js',
       '../store/image.js',
+      '../store/visitor.js',
     ], () => {
       // Update `root.modules` with the latest definitions.
       updateModules()
