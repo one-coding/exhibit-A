@@ -13,10 +13,17 @@ export const mutations = {
 
 export const actions = {
   write({ commit }, payload) {
-    commit("write", {
-      name: payload.name,
-      password: payload.password,
-      content: payload.content,
-    });
+    this.$axios
+      .post(`/vistor/${payload.name}`, {
+        name: payload.name,
+        password: payload.password,
+        content: payload.content,
+      })
+      .then(res => {
+        commit("write", res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   },
 };

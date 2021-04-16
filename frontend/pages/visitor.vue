@@ -38,7 +38,7 @@
               :rules="[v => !!v.trim() || '내용을 입력하세요.']"
               @input="onChangeTextarea"
             />
-            <v-btn class="visitor-btn" type="submit">작성완료</v-btn>
+            <v-btn class="visitor-btn" type="submit" >작성완료</v-btn>
           </div>
         </v-container>
       </v-form>

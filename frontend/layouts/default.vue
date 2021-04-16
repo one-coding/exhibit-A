@@ -29,6 +29,15 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "YiSunShinRegular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinRegular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@import url("https://fonts.googleapis.com/css2?family=Merienda&display=swap");
+
 a {
   text-decoration: none;
   outline: none;
@@ -131,7 +140,7 @@ video {
   font-size: 25px;
   letter-spacing: 0px;
   color: #f8f8f8;
-  /* font-family: "YiSunShinRegular"; */
+  font-family: "YiSunShinRegular";
   transform: translateX(60%);
 }
 
@@ -168,7 +177,7 @@ video {
 #nav-menu a {
   text-align: left;
   font: normal normal normal 20px/20px Bold;
-  /* font-family: "YiSunShinRegular"; */
+  font-family: "YiSunShinRegular";
   letter-spacing: 0px;
   color: #f8f8f8;
   padding: 20px;

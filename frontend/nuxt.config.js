@@ -15,6 +15,14 @@ module.exports = {
       brands: true,
     },
   },
+  axios: {
+    browserBaseURL: "http://localhost:3080",
+    baseURL: "http://localhost:3080",
+    https: false,
+  },
+  server: {
+    port: 3000,
+  },
   plugins: [],
   vuetify: {},
 };
