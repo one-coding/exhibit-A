@@ -1,15 +1,52 @@
 <template>
-  <div>
-    <div id="nav">
-      <div id="logo"><nuxt-link to="/">무위 無爲</nuxt-link></div>
-      <div id="nav-menu">
-        <nuxt-link to="/about">전시소개</nuxt-link> |
-        <nuxt-link :to="`/exhibit/1`">전시장</nuxt-link>
-        |
-        <nuxt-link to="/visitor">방명록</nuxt-link>
-      </div>
-    </div>
-    <nuxt />
+  <v-app>
+    <v-app-bar app flat dark :height="height" width="100%">
+      <v-container>
+        <v-row align="center" no-gutters>
+          <v-col cols="4" sm="5" md="3" lg="3" class="text-center">
+            <header class="pa-3">
+              <nuxt-link
+                class="white--text logo-title"
+                to="/"
+                tag="span"
+                style="cursor: pointer"
+              >
+                무위 無爲
+              </nuxt-link>
+            </header>
+          </v-col>
+          <v-col class="logo-subtitle">
+            <nuxt-link
+              class="nav-subtitle"
+              to="/about"
+              tag="span"
+              style="cursor: pointer"
+            >
+              전시소개
+            </nuxt-link>
+            <nuxt-link
+              class="nav-subtitle"
+              to="/exhibit/1"
+              tag="span"
+              style="cursor: pointer"
+            >
+              전시장
+            </nuxt-link>
+            <nuxt-link
+              class="nav-subtitle"
+              to="/visitor"
+              tag="span"
+              style="cursor: pointer"
+            >
+              방명록
+            </nuxt-link>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-app-bar>
+    <v-main>
+      <nuxt />
+    </v-main>
 
     <div id="playbar">
       <div id="playbar-wrapper">
@@ -31,16 +68,13 @@
         </div>
       </div>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
 export default {
   data() {
     return {};
-  },
-  mounted() {
-    this.fetchData();
   },
   computed: {
     pageIndex() {
@@ -50,13 +84,16 @@ export default {
       return this.$route.params.id;
     },
   },
+  watch: {
+    $route: "fetchData",
+  },
+  mounted() {
+    this.fetchData();
+  },
   methods: {
     fetchData() {
       const artId = this.$route.params.id;
     },
-  },
-  watch: {
-    $route: "fetchData",
   },
 };
 </script>

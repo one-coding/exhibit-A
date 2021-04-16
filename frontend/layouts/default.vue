@@ -1,16 +1,53 @@
 <template>
-  <div>
-    <div id="nav">
-      <div id="logo"><nuxt-link to="/">무위 無爲</nuxt-link></div>
-      <div id="nav-menu">
-        <nuxt-link to="/about">전시소개</nuxt-link> |
-        <nuxt-link to="/exhibit/1">전시장</nuxt-link>
-        |
-        <nuxt-link to="/visitor">방명록</nuxt-link>
-      </div>
-    </div>
-    <nuxt />
-  </div>
+  <v-app>
+    <v-app-bar app flat dark :height="height" width="100%">
+      <v-container>
+        <v-row align="center" no-gutters>
+          <v-col cols="4" sm="5" md="3" lg="3" class="text-center">
+            <header class="pa-3">
+              <nuxt-link
+                class="white--text logo-title"
+                to="/"
+                tag="span"
+                style="cursor: pointer"
+              >
+                무위 無爲
+              </nuxt-link>
+            </header>
+          </v-col>
+          <v-col class="logo-subtitle">
+            <nuxt-link
+              class="nav-subtitle"
+              to="/about"
+              tag="span"
+              style="cursor: pointer"
+            >
+              전시소개
+            </nuxt-link>
+            <nuxt-link
+              class="nav-subtitle"
+              to="/exhibit/1"
+              tag="span"
+              style="cursor: pointer"
+            >
+              전시장
+            </nuxt-link>
+            <nuxt-link
+              class="nav-subtitle"
+              to="/visitor"
+              tag="span"
+              style="cursor: pointer"
+            >
+              방명록
+            </nuxt-link>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-app-bar>
+    <v-main>
+      <nuxt />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
@@ -20,7 +57,22 @@ export default {
       btn: null,
     };
   },
-  computed: {},
+  computed: {
+    height() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return 60;
+        case "sm":
+          return 60;
+        case "md":
+          return 60;
+        case "lg":
+          return 70;
+        default:
+          return 80;
+      }
+    },
+  },
   methods: {},
   scrollToTop() {
     window.scrollTo(0, 0);
@@ -130,57 +182,55 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
-#logo {
-  display: flex;
-  align-items: center;
-  width: 150px;
-  text-align: start;
-  margin-right: 150px;
-  font: normal normal normal;
-  font-size: 25px;
-  letter-spacing: 0px;
-  color: #f8f8f8;
+
+.logo-title {
   font-family: "YiSunShinRegular";
-  transform: translateX(60%);
+  font-size: 25px;
 }
-
-#nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  background: #191919 0% 0% no-repeat padding-box;
-  padding: 20px;
-  z-index: 99;
-}
-#nav a {
+.logo-subtitle {
   font-weight: bold;
-  color: #fff;
+  color: #f8f8f8;
+  font: 18px/18px Bold;
+  font-family: "YiSunShinRegular";
+}
+.nav-subtitle {
+  padding: 20px;
 }
 
-#nav a.nuxt-link-exact-active {
+.nuxt-link-exact-active {
   color: #19caea;
 }
-#nav-menu {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  text-align: start;
-  height: 20px;
-  margin: auto;
-  color: #f8f8f8;
-  background: #191919 0% 0% no-repeat padding-box;
+
+@media screen and (max-width: 768px) {
+  #logo {
+    transform: translateX(0);
+  }
 }
-#nav-menu a {
-  text-align: left;
-  font: normal normal normal 20px/20px Bold;
-  font-family: "YiSunShinRegular";
-  letter-spacing: 0px;
-  color: #f8f8f8;
-  padding: 20px;
-  margin-right: 20px;
+@media screen and (max-width: 600px) {
+  .logo-title {
+    font-size: 16px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .logo-subtitle {
+    font: 14px/14px Bold;
+    font-family: "YiSunShinRegular";
+    transform: translateX(-10%);
+    margin-left: 12px;
+  }
+  .nav-subtitle {
+    padding: 8px;
+  }
+}
+@media screen and (max-width: 330px) {
+  .logo-subtitle {
+    font: 13px/13px Bold;
+    font-family: "YiSunShinRegular";
+    transform: translateX(-10%);
+    margin-left: 20px;
+  }
+  .nav-subtitle {
+    padding: 6px;
+  }
 }
 </style>

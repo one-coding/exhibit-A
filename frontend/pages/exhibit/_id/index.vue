@@ -1,69 +1,101 @@
 <template>
-  <div class="exhibit">
-    <div id="art-img_box">
+  <div>
+    <v-card v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
+      <v-img class="art-img" :src="src.mainSrc" />
+      <div class="bottom-area">
+        <v-btn
+          align="center"
+          justify="space-around"
+          class="bottom-btn"
+          depressed
+          @click="onClickScroll"
+        >
+          <p align="center" justify="center" class="d-block">
+            작품 설명 보기
+          </p>
+          <v-container>
+            <font-awesome-icon icon="chevron-down" />
+          </v-container>
+        </v-btn>
+      </div>
+    </v-card>
+
+    <v-card v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">
+      <v-img class="art-img_mobile" :src="src.mainSrc" />
+      <div class="bottom-area">
+        <v-btn class="bottom-btn" @click="onClickScroll">
+          <p>작품 설명 보기</p>
+          <font-awesome-icon icon="chevron-down" />
+        </v-btn>
+      </div>
+    </v-card>
+    <v-card>
+      <div class="btn-wrapper">
+        <nuxt-link :to="`/exhibit/${pageIndex}/scale`">
+          <font-awesome-icon class="serch-icon" icon="search" />
+        </nuxt-link>
+      </div>
+
+      <div class="art-img_info_div">
+        <div class="to-artImg">
+          <button class="bottom-btn" @click="onClickScrollToArt">
+            <font-awesome-icon icon="chevron-up" />
+            <p>순수 작품 보기</p>
+          </button>
+        </div>
+        <div ref="upTarget" class="art-img_info">
+          <h1>{{ info.name }}</h1>
+          <span>{{ info.method }}</span>
+          <span>{{ info.size }}</span>
+          <span>{{ info.dance }}</span>
+          <div
+            style="width: 350px; text-align:center; display:inline-block;line-height:1.4;"
+          >
+            <span v-if="info.descirption" :style="{ fontSize: '18px' }">{{
+              info.descirption
+            }}</span>
+          </div>
+        </div>
+        <div class="to-fusionArt">
+          <button class="bottom-btn" @click="onClickScrollFusionArt">
+            <p>융합 작품 보기</p>
+            <font-awesome-icon icon="chevron-down" />
+          </button>
+        </div>
+      </div>
       <img
         class="art-img"
-        :src="src.mainSrc"
+        :src="src.plusSrc"
         :style="{
           width: mainInnerWidth + 'px',
           height: mainInnerHeight + 'px',
         }"
       />
-    </div>
-    <div class="btn-wrapper">
-      <nuxt-link :to="`/exhibit/${pageIndex}/scale`">
-        <font-awesome-icon class="serch-icon" icon="search" />
-      </nuxt-link>
-    </div>
-    <div class="bottom-area">
-      <button @click="onClickScroll" class="bottom-btn">
-        <p>작품 설명 보기</p>
-        <font-awesome-icon icon="chevron-down" />
-      </button>
-    </div>
-    <div class="art-img_info_div">
-      <div class="to-artImg">
-        <button @click="onClickScrollToArt" class="bottom-btn">
-          <font-awesome-icon icon="chevron-up" />
-          <p>순수 작품 보기</p>
-        </button>
-      </div>
-      <div class="art-img_info" ref="upTarget">
-        <h1>{{ info.name }}</h1>
-        <span>{{ info.method }}</span>
-        <span>{{ info.size }}</span>
-        <span>{{ info.dance }}</span>
-        <div
-          style="width: 350px; text-align:center; display:inline-block;line-height:1.4;"
-        >
-          <span :style="{ fontSize: '18px' }" v-if="info.descirption">{{
-            info.descirption
-          }}</span>
-        </div>
-      </div>
-      <div class="to-fusionArt">
-        <button @click="onClickScrollFusionArt" class="bottom-btn">
-          <p>융합 작품 보기</p>
-          <font-awesome-icon icon="chevron-down" />
-        </button>
-      </div>
-    </div>
-    <img
-      class="art-img"
-      :src="src.plusSrc"
-      :style="{
-        width: mainInnerWidth + 'px',
-        height: mainInnerHeight + 'px',
-      }"
-    />
+    </v-card>
   </div>
 </template>
 
 <script>
 export default {
   layout: "playbar",
-  head: {
-    title: "비대면 전시회 - 전시장",
+  data() {
+    return {
+      src: {
+        mainSrc: this.$store.state.image.arts[0].main_src,
+        plusSrc: this.$store.state.image.arts[0].plus_src,
+      },
+      info: {
+        name: this.$store.state.image.arts[0].name,
+        descirption: this.$store.state.image.arts[0].descirption,
+        dance: this.$store.state.image.arts[0].dance,
+        size: this.$store.state.image.arts[0].size,
+        method: this.$store.state.image.arts[0].method,
+      },
+      artImg: true,
+
+      mainInnerWidth: null,
+      mainInnerHeight: null,
+    };
   },
   computed: {
     pageIndex() {
@@ -106,31 +138,10 @@ export default {
 
     window.addEventListener("scroll", this.handleScroll);
     window.addEventListener("resize", this.handleResize);
-    this.mainInnerWidth = window.innerWidth;
-    this.mainInnerHeight = window.innerHeight;
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.handleScroll);
     window.removeEventListener("resize", this.handleResize);
-  },
-  data() {
-    return {
-      src: {
-        mainSrc: this.$store.state.image.arts[0].main_src,
-        plusSrc: this.$store.state.image.arts[0].plus_src,
-      },
-      info: {
-        name: this.$store.state.image.arts[0].name,
-        descirption: this.$store.state.image.arts[0].descirption,
-        dance: this.$store.state.image.arts[0].dance,
-        size: this.$store.state.image.arts[0].size,
-        method: this.$store.state.image.arts[0].method,
-      },
-      artImg: true,
-
-      mainInnerWidth: null,
-      mainInnerHeight: null,
-    };
   },
   methods: {
     toTop() {
@@ -166,10 +177,6 @@ export default {
       }
     },
 
-    handleResize() {
-      this.mainInnerWidth = window.innerWidth;
-      this.mainInnerHeight = window.innerHeight;
-    },
     artIdChangeSrc(index) {
       this.src.mainSrc = this.$store.state.image.arts[index].main_src;
       this.src.plusSrc = this.$store.state.image.arts[index].plus_src;
@@ -180,6 +187,9 @@ export default {
       this.info.descirption = this.$store.state.image.arts[index].descirption;
     },
   },
+  head: {
+    title: "비대면 전시회 - 전시장",
+  },
 };
 </script>
 
@@ -189,7 +199,12 @@ export default {
 }
 /* 메인 이미지 */
 .art-img {
-  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+}
+.art-img_mobile {
+  width: 100%;
+  height: 100vh;
 }
 
 /* 이미지 설명 */
@@ -269,17 +284,14 @@ export default {
   font-size: 1.5em;
 }
 /* 작품 설명 버튼 */
+
 .bottom-area {
-  bottom: 10%;
+  bottom: 20%;
   transition: all 300ms ease 0s;
-  z-index: 2;
+  z-index: 999;
   position: absolute;
   display: flex;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
+
   left: 50%;
   transform: translateX(-50%);
 }
@@ -305,9 +317,6 @@ export default {
   position: absolute;
   display: flex;
   flex-direction: column;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
   align-items: center;
   bottom: 12%;
   right: 5%;

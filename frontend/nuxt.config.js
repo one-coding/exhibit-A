@@ -8,6 +8,19 @@ module.exports = {
     "@nuxtjs/fontawesome",
     "@nuxtjs/vuetify",
   ],
+  vuetify: {
+    breakpoint: {
+      mobileBreakpoint: "xs",
+    },
+    theme: {
+      themes: {
+        light: {
+          btn: "0c606f",
+          primary: "#19caea",
+        },
+      },
+    },
+  },
 
   fontawesome: {
     icons: {
@@ -15,14 +28,14 @@ module.exports = {
       brands: true,
     },
   },
+
   axios: {
-    browserBaseURL: "http://localhost:3080",
-    baseURL: "http://localhost:3080",
+    browserBaseURL: "http://localhost:3085",
+    baseURL: "http://localhost:3085",
     https: false,
   },
   server: {
-    port: 3000,
+    port: 3080,
   },
   plugins: [],
-  vuetify: {},
 };

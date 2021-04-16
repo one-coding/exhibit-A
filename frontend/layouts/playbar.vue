@@ -1,20 +1,56 @@
 <template>
-  <div>
-    <div id="nav">
-      <div id="logo"><nuxt-link to="/">무위 無爲</nuxt-link></div>
-      <div id="nav-menu">
-        <nuxt-link to="/about">전시소개</nuxt-link> |
-        <nuxt-link :to="`/exhibit/${+pageIndex}`">전시장</nuxt-link>
-        |
-        <nuxt-link to="/visitor">방명록</nuxt-link>
-      </div>
-    </div>
-    <nuxt />
+  <v-app>
+    <v-app-bar app flat dark :height="height" width="100%">
+      <v-container>
+        <v-row align="center" no-gutters>
+          <v-col cols="4" sm="5" md="3" lg="3" class="text-center">
+            <header class="pa-3">
+              <nuxt-link
+                class="white--text logo-title"
+                to="/"
+                tag="span"
+                style="cursor: pointer"
+              >
+                무위 無爲
+              </nuxt-link>
+            </header>
+          </v-col>
+          <v-col class="logo-subtitle">
+            <nuxt-link
+              class="nav-subtitle"
+              to="/about"
+              tag="span"
+              style="cursor: pointer"
+            >
+              전시소개
+            </nuxt-link>
+            <nuxt-link
+              class="nav-subtitle"
+              to="/exhibit/1"
+              tag="span"
+              style="cursor: pointer"
+            >
+              전시장
+            </nuxt-link>
+            <nuxt-link
+              class="nav-subtitle"
+              to="/visitor"
+              tag="span"
+              style="cursor: pointer"
+            >
+              방명록
+            </nuxt-link>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-app-bar>
+    <v-main>
+      <nuxt />
+    </v-main>
 
-    <div id="playbar">
-      <div id="playbar-wrapper">
-        <!-- 전시장까지 보여질 플레이바 -->
-        <div class="playbar-icon" v-show="pageIndex !== '6'">
+    <v-container id="playbar">
+      <v-card id="playbar-wrapper" :height="height">
+        <div v-show="pageIndex !== '6'" class="playbar-icon">
           <nuxt-link to="/exhibit/1">
             <font-awesome-icon icon="step-backward" />
           </nuxt-link>
@@ -31,8 +67,8 @@
             <font-awesome-icon icon="step-forward" />
           </nuxt-link>
         </div>
-        <!-- 방명록으로 가는 플레이 바-->
-        <div class="playbar-icon" v-show="pageIndex === '6'">
+
+        <v-container v-show="pageIndex === '6'" class="playbar-icon">
           <nuxt-link to="/exhibit/1">
             <font-awesome-icon icon="step-backward" />
           </nuxt-link>
@@ -46,10 +82,16 @@
           <nuxt-link to="/exhibit/6">
             <font-awesome-icon icon="step-forward" />
           </nuxt-link>
-        </div>
-      </div>
-    </div>
-  </div>
+        </v-container>
+        <v-btn dark class="menu-icon" align="center" @click="onClickMenu">
+          <font-awesome-icon icon="th-list" />
+          <div class="d-inline">
+            <span class="menu-icon_span">전체작품 보기</span>
+          </div>
+        </v-btn>
+      </v-card>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
@@ -57,13 +99,31 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
   computed: {
     pageIndex() {
       return this.$route.params.id;
     },
+    height() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return 60;
+        case "sm":
+          return 60;
+        case "md":
+          return 60;
+        case "lg":
+          return 70;
+        default:
+          return 80;
+      }
+    },
   },
-  methods: {},
+  mounted() {},
+  methods: {
+    onClickMenu() {
+      console.log("hello~");
+    },
+  },
 };
 </script>
 
@@ -90,5 +150,37 @@ export default {
 .playbar-icon span {
   margin: 0px 20px;
   letter-spacing: 3px;
+}
+.menu-icon {
+  cursor: pointer;
+  margin: 0px 0px;
+  position: absolute;
+  right: 5%;
+  border-style: none;
+  background-color: none;
+}
+.menu-icon_span {
+  margin-left: 15px;
+  font-size: 18px;
+  transform: translateY(15%);
+}
+@media screen and (max-width: 750px) {
+  .menu-icon {
+    border: none;
+    margin: 0px 0px;
+    position: absolute;
+    right: 5%;
+    font-size: 14px;
+  }
+  .menu-icon_span {
+    display: none;
+  }
+  .playbar-icon {
+    font-size: 14px;
+    text-decoration: none;
+    padding: 0;
+    margin: 0px 10px;
+    color: #fff;
+  }
 }
 </style>

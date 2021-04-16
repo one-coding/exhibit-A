@@ -8,6 +8,7 @@ export const state = () => ({
       dance: "한국무용 - 살풀이 춤",
       main_src: require("../assets/img/01.jpg"),
       plus_src: require("../assets/img_scale/01.jpg"),
+      mobile_src: require("../assets/img_scale/01.jpg"),
     },
     {
       id: 2,
