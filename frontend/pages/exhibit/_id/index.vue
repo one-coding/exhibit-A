@@ -18,6 +18,11 @@
           </v-container>
         </v-btn>
       </div>
+      <v-btn fab dark class="btn-wrapper">
+        <nuxt-link :to="`/exhibit/${pageIndex}/scale`">
+          <font-awesome-icon class="serch-icon" icon="search" />
+        </nuxt-link>
+      </v-btn>
     </v-card>
 
     <v-card v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">
@@ -28,14 +33,13 @@
           <font-awesome-icon icon="chevron-down" />
         </v-btn>
       </div>
-    </v-card>
-    <v-card>
-      <div class="btn-wrapper">
+      <v-btn fab dark class="btn-wrapper">
         <nuxt-link :to="`/exhibit/${pageIndex}/scale`">
           <font-awesome-icon class="serch-icon" icon="search" />
         </nuxt-link>
-      </div>
-
+      </v-btn>
+    </v-card>
+    <v-card>
       <div class="art-img_info_div">
         <div class="to-artImg">
           <button class="bottom-btn" @click="onClickScrollToArt">
@@ -43,17 +47,21 @@
             <p>순수 작품 보기</p>
           </button>
         </div>
+
         <div ref="upTarget" class="art-img_info">
           <h1>{{ info.name }}</h1>
           <span>{{ info.method }}</span>
           <span>{{ info.size }}</span>
           <span>{{ info.dance }}</span>
-          <div
-            style="width: 350px; text-align:center; display:inline-block;line-height:1.4;"
-          >
-            <span v-if="info.descirption" :style="{ fontSize: '18px' }">{{
-              info.descirption
-            }}</span>
+          <div style="width: 350px; line-height:1.4;">
+            <v-card flat>
+              <span
+                v-if="info.descirption"
+                class="text-left"
+                :style="{ fontSize: '18px' }"
+                >{{ info.descirption }}</span
+              >
+            </v-card>
           </div>
         </div>
         <div class="to-fusionArt">
@@ -63,14 +71,9 @@
           </button>
         </div>
       </div>
-      <img
-        class="art-img"
-        :src="src.plusSrc"
-        :style="{
-          width: mainInnerWidth + 'px',
-          height: mainInnerHeight + 'px',
-        }"
-      />
+    </v-card>
+    <v-card>
+      <v-img class="art-img" :src="src.plusSrc" />
     </v-card>
   </div>
 </template>
@@ -288,10 +291,8 @@ export default {
 .bottom-area {
   bottom: 20%;
   transition: all 300ms ease 0s;
-  z-index: 999;
   position: absolute;
   display: flex;
-
   left: 50%;
   transform: translateX(-50%);
 }
@@ -308,19 +309,12 @@ export default {
   font-size: 1.5em;
 }
 .btn-wrapper {
-  width: 50px;
-  height: 50px;
+  background: #191919;
   border-radius: 50%;
-  background: #191919 0% 0% no-repeat padding-box;
   transition: all 300ms ease 0s;
-  z-index: 2;
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  bottom: 12%;
+  bottom: 20%;
   right: 5%;
-  margin-right: 20px;
 }
 .btn-wrapper a {
   color: #19caea;

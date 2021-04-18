@@ -68,7 +68,7 @@
           </nuxt-link>
         </div>
 
-        <v-container v-show="pageIndex === '6'" class="playbar-icon">
+        <div v-show="pageIndex === '6'" class="playbar-icon">
           <nuxt-link to="/exhibit/1">
             <font-awesome-icon icon="step-backward" />
           </nuxt-link>
@@ -82,10 +82,10 @@
           <nuxt-link to="/exhibit/6">
             <font-awesome-icon icon="step-forward" />
           </nuxt-link>
-        </v-container>
+        </div>
         <v-btn dark class="menu-icon" align="center" @click="onClickMenu">
           <font-awesome-icon icon="th-list" />
-          <div class="d-inline">
+          <div>
             <span class="menu-icon_span">전체작품 보기</span>
           </div>
         </v-btn>

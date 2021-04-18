@@ -1,42 +1,48 @@
 <template>
-  <div class="exhibit">
+  <v-card>
     <div id="art-img_box">
-      <img
-        class="art-img"
-        :src="src.plusSrc"
-        :style="{
-          width: mainInnerWidth + 'px',
-          height: mainInnerHeight + 'px',
-        }"
-      />
+      <v-img class="art-img" :src="src.plusSrc" />
+      <v-btn large dark class="btn-wrapper_span">
+        <nuxt-link :to="`/exhibit/${pageIndex}`">
+          돌아가기
+        </nuxt-link>
+      </v-btn>
+      <v-btn fab dark class="btn-wrapper" style="right: 30%">
+        <button
+          class="
+      icon-btn"
+          @click="onScaleUp"
+        >
+          <font-awesome-icon icon="plus" />
+        </button>
+      </v-btn>
+      <v-btn fab dark class="btn-wrapper" style="right: 25%">
+        <button class="icon-btn" @click="onScaleUp">
+          <font-awesome-icon icon="minus" />
+        </button>
+      </v-btn>
+      <v-btn fab dark class="btn-wrapper" style="right: 20%">
+        <button class="icon-btn" @click="onScaleUp">
+          <font-awesome-icon icon="redo" />
+        </button>
+      </v-btn>
     </div>
-    <div class="btn-wrapper_span">
-      <nuxt-link :to="`/exhibit/${pageIndex}`">돌아가기</nuxt-link>
-    </div>
-    <div class="btn-wrapper">
-      <button class="icon-btn" @click="onScaleUp">
-        <font-awesome-icon icon="plus" />
-      </button>
-    </div>
-    <div class="btn-wrapper" style="right: 20%">
-      <button class="icon-btn" @click="onScaleUp">
-        <font-awesome-icon icon="minus" />
-      </button>
-    </div>
-    <div class="btn-wrapper" style="right: 16%">
-      <button class="icon-btn" @click="onScaleUp">
-        <font-awesome-icon icon="redo" />
-      </button>
-    </div>
-  </div>
+  </v-card>
 </template>
 
 <script>
 export default {
   scrollToTop: true,
   layout: "scale",
-  head: {
-    title: "비대면 전시회 - 전시장",
+  data() {
+    return {
+      artImg: true,
+      isReadOnly: false,
+
+      src: {
+        plusSrc: this.$store.state.image.arts[0].plus_src,
+      },
+    };
   },
   computed: {
     arts() {
@@ -83,16 +89,6 @@ export default {
   beforeDestroy() {
     window.removeEventListener("scroll", this.handleScroll);
   },
-  data() {
-    return {
-      artImg: true,
-      isReadOnly: false,
-
-      src: {
-        plusSrc: this.$store.state.image.arts[0].plus_src,
-      },
-    };
-  },
   methods: {
     toTop() {
       setTimeout(() => {
@@ -110,6 +106,9 @@ export default {
       this.src.plusSrc = this.$store.state.image.arts[index].plus_src;
     },
   },
+  head: {
+    title: "비대면 전시회 - 전시장",
+  },
 };
 </script>
 
@@ -120,7 +119,6 @@ export default {
   justify-content: center;
   align-items: center;
   background: #fff;
-  transform: translateY(-10%);
 }
 /* 메인 이미지 */
 .art-img {
@@ -132,19 +130,14 @@ export default {
   display: inline-block;
   border-radius: 28px;
   width: 132px;
-  height: 56px;
+  font-size: 15px;
+  height: 106px;
   background: #191919 0% 0% no-repeat padding-box;
-
   transition: all 300ms ease 0s;
   z-index: 2;
   position: absolute;
   display: flex;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  bottom: 10%;
+  bottom: 13%;
   right: 8%;
   margin-right: 20px;
 }
@@ -152,7 +145,7 @@ export default {
 .btn-wrapper_span a {
   color: #19caea;
   background: 0% 0% no-repeat padding-box;
-  font-size: 26px;
+  font-size: 20px;
   padding: 10px 20px;
   display: flex;
   font-family: "NotoSans";
@@ -167,17 +160,17 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  bottom: 10%;
+  bottom: 13%;
   right: 24%;
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
 }
 .icon-btn {
   outline: none;
   background: none;
   border: none;
   color: #19caea;
-  font-size: 31px;
+  font-size: 25px;
   cursor: pointer;
 }
 </style>
