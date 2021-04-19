@@ -37,5 +37,6 @@ module.exports = {
   server: {
     port: 3080,
   },
-  plugins: [],
+  plugins: [{ src: "./plugins/vue-awesome-swiper.js", mode: "client" }],
+  css: [],
 };

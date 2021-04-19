@@ -7,7 +7,7 @@
           돌아가기
         </nuxt-link>
       </v-btn>
-      <v-btn fab dark class="btn-wrapper" style="right: 30%">
+      <!-- <v-btn fab dark class="btn-wrapper" style="right: 30%">
         <button
           class="
       icon-btn"
@@ -25,7 +25,7 @@
         <button class="icon-btn" @click="onScaleUp">
           <font-awesome-icon icon="redo" />
         </button>
-      </v-btn>
+      </v-btn> -->
     </div>
   </v-card>
 </template>

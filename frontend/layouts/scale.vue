@@ -18,13 +18,16 @@
             <font-awesome-icon icon="step-forward" />
           </nuxt-link>
         </div>
+        <see-art-menu />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import seeArtMenu from "../components/seeArtMenu.vue";
 export default {
+  components: { seeArtMenu },
   data() {
     return {};
   },

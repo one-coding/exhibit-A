@@ -83,19 +83,16 @@
             <font-awesome-icon icon="step-forward" />
           </nuxt-link>
         </div>
-        <v-btn dark class="menu-icon" align="center" @click="onClickMenu">
-          <font-awesome-icon icon="th-list" />
-          <div>
-            <span class="menu-icon_span">전체작품 보기</span>
-          </div>
-        </v-btn>
+        <seeArtMenu />
       </v-card>
     </v-container>
   </v-app>
 </template>
 
 <script>
+import seeArtMenu from "../components/seeArtMenu.vue";
 export default {
+  components: { seeArtMenu },
   data() {
     return {};
   },

@@ -18,11 +18,11 @@
           </v-container>
         </v-btn>
       </div>
-      <v-btn fab dark class="btn-wrapper">
-        <nuxt-link :to="`/exhibit/${pageIndex}/scale`">
+      <nuxt-link :to="`/exhibit/${pageIndex}/scale`">
+        <v-btn fab dark class="btn-wrapper">
           <font-awesome-icon class="serch-icon" icon="search" />
-        </nuxt-link>
-      </v-btn>
+        </v-btn>
+      </nuxt-link>
     </v-card>
 
     <v-card v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">
@@ -95,7 +95,6 @@ export default {
         method: this.$store.state.image.arts[0].method,
       },
       artImg: true,
-
       mainInnerWidth: null,
       mainInnerHeight: null,
     };
@@ -316,7 +315,7 @@ export default {
   bottom: 20%;
   right: 5%;
 }
-.btn-wrapper a {
+.btn-wrapper .serch-icon {
   color: #19caea;
   background: 0% 0% no-repeat padding-box;
   font-size: 25px;
