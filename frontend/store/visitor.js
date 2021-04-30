@@ -1,29 +1,37 @@
 export const state = () => ({
-  name: null,
-  password: null,
-  content: null,
+  mainPosts: [],
+  postLength: [],
 });
 export const mutations = {
+  setPost(state, payload) {
+    state.mainPosts = payload;
+  },
   write(state, payload) {
-    state.name = payload.name;
-    state.password = payload.password;
-    state.content = payload.content;
+    state.mainPosts.unshift(payload);
   },
 };
 
 export const actions = {
-  write({ commit }, payload) {
-    this.$axios
-      .post(`/vistor/${payload.name}`, {
+  async loadPost({ commit }, payload) {
+    try {
+      const res = await this.$axios.get(`/visitor`);
+      commit("setPost", res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  },
+
+  async write({ commit }, payload) {
+    try {
+      const res = await this.$axios.post(`/visitor/post`, {
         name: payload.name,
         password: payload.password,
         content: payload.content,
-      })
-      .then(res => {
-        commit("write", res.data);
-      })
-      .catch(err => {
-        console.error(err);
       });
+      console.log("여기인가?");
+      commit("write", res.data);
+    } catch (err) {
+      console.error(err);
+    }
   },
 };

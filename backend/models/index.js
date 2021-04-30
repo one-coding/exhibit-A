@@ -2,7 +2,7 @@
 const Sequelize = require("sequelize");
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
-const User = require("./user");
+const Post = require("./post");
 
 const db = {};
 const sequelize = new Sequelize(
@@ -12,9 +12,9 @@ const sequelize = new Sequelize(
   config
 );
 
-db.User = User;
+db.Post = Post;
 
-User.init(sequelize);
+Post.init(sequelize);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

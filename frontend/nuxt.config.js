@@ -2,7 +2,7 @@ module.exports = {
   head: {
     title: "비대면 전시회",
   },
-  modules: [],
+  modules: ["@nuxtjs/axios"],
   buildModules: [
     "@nuxtjs/style-resources",
     "@nuxtjs/fontawesome",
@@ -37,6 +37,6 @@ module.exports = {
   server: {
     port: 3080,
   },
-  plugins: [{ src: "./plugins/vue-awesome-swiper.js", mode: "client" }],
+
   css: [],
 };

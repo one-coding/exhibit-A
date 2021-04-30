@@ -1,77 +1,50 @@
 <template>
-  <div>
-    <swiper
-      v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm"
-      ref="mySwiper"
-      :options="swiperOption"
-      div
-      class="comment-container"
-      @someSwiperEvent="callback"
-    >
-      <swiper-slide v-for="n in 3" :key="n">
-        <v-main class="comment-group">
-          <v-container :style="{}">
-            <v-row justify="center" no-gutters dense>
-              <v-col v-for="n in 12" :key="n" cols="3" class="ma-0">
-                <v-card
-                  height="200"
-                  width="200"
-                  :style="{ borderRadius: '20px', padding: '20px' }"
-                >
-                  <span class="comment-name">{{ changeName }}</span>
-                  <span class="comment-date">2021. 03. 31 16:55</span>
-                  <span class="comment-content">{{ changeContent }}</span>
-                  <font-awesome-icon class="comment-icon" icon="edit" />
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-main>
-      </swiper-slide>
-      <div slot="pagination" class="swiper-pagination" />
-      <div slot="button-prev" class="swiper-button-prev  white--text" />
-      <div slot="button-next" class="swiper-button-next   white--text" />
-    </swiper>
+  <div v-if="comment">
+    <v-container v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
+      <v-main class="comment-group">
+        <v-container>
+          <v-card
+            height="200"
+            width="200"
+            :style="{ borderRadius: '20px', padding: '20px' }"
+          >
+            <span class="comment-name">{{ comment.name }}</span>
+            <span class="comment-date">{{ comment.createdAt }}</span>
+            <span class="comment-content">{{ comment.content }}</span>
+            <font-awesome-icon class="comment-icon" icon="edit" />
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-container>
 
     <!-- 모바일 버전 -->
-
-    <swiper
-      v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm"
-      ref="mySwiper"
-      :options="swiperOption"
-      div
-      class="comment-container"
-      @someSwiperEvent="callback"
-    >
-      <swiper-slide v-for="n in 3" :key="n">
-        <v-main>
-          <v-container class="px-14">
-            <v-row>
-              <v-col v-for="n in 3" :key="n" cols="12" class="py-5">
-                <v-card
-                  height="150"
-                  width="100%"
-                  :style="{ borderRadius: '20px', padding: '20px' }"
-                >
-                  <span class="comment-name">{{ changeName }}</span>
-                  <span class="comment-date">2021. 03. 31 16:55</span>
-                  <span class="comment-content">{{ changeContent }}</span>
-                  <font-awesome-icon class="comment-icon" icon="edit" />
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-main>
-      </swiper-slide>
-      <div slot="pagination" class="swiper-pagination" />
-      <div slot="button-prev" class="swiper-button-prev  white--text" />
-      <div slot="button-next" class="swiper-button-next   white--text" />
-    </swiper>
+    <v-container v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">
+      <v-main class="comment-group">
+        <v-container>
+          <v-card
+            height="150"
+            width="100%"
+            :style="{ borderRadius: '20px', padding: '20px' }"
+          >
+            <span class="comment-name">{{ comment.name }}</span>
+            <span class="comment-date">{{ comment.createdAt }}</span>
+            <span class="comment-content">{{ comment.content }}</span>
+            <font-awesome-icon class="comment-icon" icon="edit" />
+          </v-card>
+        </v-container>
+      </v-main>
+    </v-container>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    comment: {
+      type: Object,
+      require: true,
+    },
+  },
   data() {
     return {
       swiperOption: {

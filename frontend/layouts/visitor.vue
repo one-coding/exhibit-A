@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app flat dark :height="height" width="100%">
+    <v-app-bar app flat dark width="100%">
       <v-container>
         <v-row align="center" no-gutters>
           <v-col cols="4" sm="5" md="3" lg="3" class="text-center">
@@ -82,7 +82,7 @@ export default {
   computed: {
     pageIndex() {
       if (!this.$route.params.id || this.$route.params.id > 6) {
-        this.$route.params.id = 7;
+        return;
       }
       return this.$route.params.id;
     },

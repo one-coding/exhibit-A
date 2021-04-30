@@ -4,6 +4,7 @@
       <v-img class="art-img" :src="src.mainSrc" />
       <div class="bottom-area">
         <v-btn
+          text
           align="center"
           justify="space-around"
           class="bottom-btn"
@@ -19,7 +20,7 @@
         </v-btn>
       </div>
       <nuxt-link :to="`/exhibit/${pageIndex}/scale`">
-        <v-btn fab dark class="btn-wrapper">
+        <v-btn fab dark class="btn-wrapper" text>
           <font-awesome-icon class="serch-icon" icon="search" />
         </v-btn>
       </nuxt-link>
@@ -28,7 +29,7 @@
     <v-card v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">
       <v-img class="art-img_mobile" :src="src.mainSrc" />
       <div class="bottom-area">
-        <v-btn class="bottom-btn" @click="onClickScroll">
+        <v-btn text class="bottom-btn" @click="onClickScroll">
           <p>작품 설명 보기</p>
           <font-awesome-icon icon="chevron-down" />
         </v-btn>

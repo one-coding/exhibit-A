@@ -1,9 +1,10 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const bcrypt = require("bcrypt");
-const User = require("./models/user");
 const { sequelize } = require("./models");
+
+const visitorRouter = require("./routes/visitor");
+
 const app = express();
 
 sequelize
@@ -18,7 +19,7 @@ sequelize
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3080",
     credentials: true,
   })
 );
@@ -29,20 +30,7 @@ app.get("/", (req, res) => {
   res.send("hello");
 });
 
-app.post("/visitor/:id", async (req, res, next) => {
-  try {
-    const hash = await bcrypt.hash(req.body.password, 12);
-    const newUser = await User.create({
-      name: req.body.name,
-      password: hash,
-      content: req.body.content,
-    });
-    res.status(201).json(newUser);
-  } catch (err) {
-    console.error(err);
-    next(err);
-  }
-});
+app.use("/visitor", visitorRouter);
 
 app.use((req, res, next) => {
   const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
@@ -50,6 +38,6 @@ app.use((req, res, next) => {
   next(error);
 });
 
-app.listen("3080", () => {
-  console.log("3080번 포트에서 대기 중");
+app.listen("3085", () => {
+  console.log("3085번 포트에서 대기 중");
 });

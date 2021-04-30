@@ -83,16 +83,17 @@
             <font-awesome-icon icon="step-forward" />
           </nuxt-link>
         </div>
-        <seeArtMenu />
+        <see-art-menu />
       </v-card>
     </v-container>
   </v-app>
 </template>
 
 <script>
-import seeArtMenu from "../components/seeArtMenu.vue";
+import SeeArtMenu from "~/components/SeeArtMenu.vue";
+
 export default {
-  components: { seeArtMenu },
+  components: { SeeArtMenu },
   data() {
     return {};
   },

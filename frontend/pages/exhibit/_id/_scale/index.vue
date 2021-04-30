@@ -26,7 +26,7 @@
           <font-awesome-icon icon="redo" />
         </button>
       </v-btn> -->
-    </div>
+    </div> 
   </v-card>
 </template>
 

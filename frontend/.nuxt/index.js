@@ -14,8 +14,8 @@ import { createStore } from './store.js'
 /* Plugins */
 
 import nuxt_plugin_plugin_7c929eb6 from 'nuxt_plugin_plugin_7c929eb6' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_axios_3d180f4e from 'nuxt_plugin_axios_3d180f4e' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_fontawesome_da269fe0 from 'nuxt_plugin_fontawesome_da269fe0' // Source: ./fontawesome.js (mode: 'all')
-import nuxt_plugin_vueawesomeswiper_57bca9f0 from 'nuxt_plugin_vueawesomeswiper_57bca9f0' // Source: ../plugins/vue-awesome-swiper.js (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -216,12 +216,12 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_plugin_7c929eb6(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_fontawesome_da269fe0 === 'function') {
-    await nuxt_plugin_fontawesome_da269fe0(app.context, inject)
+  if (typeof nuxt_plugin_axios_3d180f4e === 'function') {
+    await nuxt_plugin_axios_3d180f4e(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_vueawesomeswiper_57bca9f0 === 'function') {
-    await nuxt_plugin_vueawesomeswiper_57bca9f0(app.context, inject)
+  if (typeof nuxt_plugin_fontawesome_da269fe0 === 'function') {
+    await nuxt_plugin_fontawesome_da269fe0(app.context, inject)
   }
 
   // Lock enablePreview in context

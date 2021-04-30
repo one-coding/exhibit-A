@@ -46,7 +46,7 @@
           </v-container>
         </v-form>
       </div>
-      <comment />
+      <comment-slide :post="mainPosts" :cols="3" />
     </div>
 
     <!-- 모바일 버전 -->
@@ -90,15 +90,19 @@
           </v-container>
         </v-form>
       </v-container>
-      <comment />
+      <comment-slide :post="mainPosts" :cols="12" />
     </div>
   </div>
 </template>
 <script>
-import comment from "../components/comment.vue";
+import CommentSlide from "../components/CommentSlide.vue";
+
 export default {
-  components: { comment },
+  components: { CommentSlide },
   layout: "visitor",
+  fetch({ store }) {
+    return store.dispatch("visitor/loadPost");
+  },
 
   data() {
     return {
@@ -114,11 +118,8 @@ export default {
     };
   },
   computed: {
-    changeName() {
-      return this.$store.state.visitor.name;
-    },
-    changeContent() {
-      return this.$store.state.visitor.content;
+    mainPosts() {
+      return this.$store.state.visitor.mainPosts;
     },
   },
   mounted() {
@@ -127,15 +128,21 @@ export default {
   methods: {
     onSubmitForm() {
       if (this.$refs.form.validate()) {
-        console.log("submit!");
-        this.$store.dispatch("visitor/write", {
-          name: this.name,
-          password: this.password,
-          content: this.content,
-        });
-        this.name = "";
-        this.password = "";
-        this.content = "";
+        console.log(this.name, this.content);
+        this.$store
+          .dispatch("visitor/write", {
+            name: this.name,
+            password: this.password,
+            content: this.content,
+          })
+          .then(() => {
+            this.name = "";
+            this.password = "";
+            this.content = "";
+          })
+          .catch(err => {
+            console.error(err);
+          });
       }
     },
     onChangeTextarea(value) {

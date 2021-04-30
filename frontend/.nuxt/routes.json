@@ -3,42 +3,42 @@
     "name": "about",
     "path": "/about",
     "component": "/Users/jaewon/Desktop/exhibit_a/frontend/pages/about.vue",
-    "chunkName": "pages/about"
+    "chunkName": "pages/about",
+    "_name": "_40508f8b"
   },
   {
     "name": "artmenu",
     "path": "/artmenu",
     "component": "/Users/jaewon/Desktop/exhibit_a/frontend/pages/artmenu.vue",
-    "chunkName": "pages/artmenu"
-  },
-  {
-    "name": "swiper",
-    "path": "/swiper",
-    "component": "/Users/jaewon/Desktop/exhibit_a/frontend/pages/swiper.vue",
-    "chunkName": "pages/swiper"
+    "chunkName": "pages/artmenu",
+    "_name": "_a64d6380"
   },
   {
     "name": "visitor",
     "path": "/visitor",
     "component": "/Users/jaewon/Desktop/exhibit_a/frontend/pages/visitor.vue",
-    "chunkName": "pages/visitor"
+    "chunkName": "pages/visitor",
+    "_name": "_3445e66c"
   },
   {
     "name": "exhibit-id",
     "path": "/exhibit/:id",
     "component": "/Users/jaewon/Desktop/exhibit_a/frontend/pages/exhibit/_id/index.vue",
-    "chunkName": "pages/exhibit/_id/index"
+    "chunkName": "pages/exhibit/_id/index",
+    "_name": "_7b9d8b45"
   },
   {
     "name": "exhibit-id-scale",
     "path": "/exhibit/:id?/:scale",
     "component": "/Users/jaewon/Desktop/exhibit_a/frontend/pages/exhibit/_id/_scale/index.vue",
-    "chunkName": "pages/exhibit/_id/_scale/index"
+    "chunkName": "pages/exhibit/_id/_scale/index",
+    "_name": "_339dac6b"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/jaewon/Desktop/exhibit_a/frontend/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_60086a50"
   }
 ]

@@ -6,7 +6,6 @@ import scrollBehavior from './router.scrollBehavior.js'
 
 const _40508f8b = () => interopDefault(import('../pages/about.vue' /* webpackChunkName: "pages/about" */))
 const _a64d6380 = () => interopDefault(import('../pages/artmenu.vue' /* webpackChunkName: "pages/artmenu" */))
-const _da71d82c = () => interopDefault(import('../pages/swiper.vue' /* webpackChunkName: "pages/swiper" */))
 const _3445e66c = () => interopDefault(import('../pages/visitor.vue' /* webpackChunkName: "pages/visitor" */))
 const _7b9d8b45 = () => interopDefault(import('../pages/exhibit/_id/index.vue' /* webpackChunkName: "pages/exhibit/_id/index" */))
 const _339dac6b = () => interopDefault(import('../pages/exhibit/_id/_scale/index.vue' /* webpackChunkName: "pages/exhibit/_id/_scale/index" */))
@@ -31,10 +30,6 @@ export const routerOptions = {
     path: "/artmenu",
     component: _a64d6380,
     name: "artmenu"
-  }, {
-    path: "/swiper",
-    component: _da71d82c,
-    name: "swiper"
   }, {
     path: "/visitor",
     component: _3445e66c,
